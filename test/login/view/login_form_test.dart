@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:mvvm_bloc/login/login.dart';
+import 'package:mvvm_bloc/viewmodels/login/login_view_model.dart';
 import 'package:mvvm_bloc/views/widgets/login_form.dart';
 
 class FakeLoginEvent extends Fake implements LoginEvent {}

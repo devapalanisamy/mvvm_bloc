@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mvvm_bloc/login/login.dart';
+import 'package:mvvm_bloc/models/password.dart';
 
 void main() {
   const passwordString = 'mock-password';

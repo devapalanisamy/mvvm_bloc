@@ -11,20 +11,20 @@ import 'package:mvvm_bloc/viewmodels/home/home_view_model.dart';
 class App extends StatelessWidget {
   const App({
     Key? key,
-    required this.authenticationRepository,
+    required this.authenticationService,
     required this.userRepository,
   }) : super(key: key);
 
-  final AuthenticationService authenticationRepository;
+  final AuthenticationService authenticationService;
   final UserService userRepository;
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
-      value: authenticationRepository,
+      value: authenticationService,
       child: BlocProvider(
         create: (_) => HomeViewModel(
-          authenticationService: authenticationRepository,
+          authenticationService: authenticationService,
           userService: userRepository,
         ),
         child: AppView(),

@@ -7,7 +7,7 @@ import 'package:mvvm_bloc/services/user_service.dart';
 void main() {
   registerDependencies();
   runApp(App(
-    authenticationRepository: AuthenticationService(),
-    userRepository: UserService(),
+    authenticationService: container<AuthenticationService>(),
+    userRepository: container<UserService>(),
   ));
 }

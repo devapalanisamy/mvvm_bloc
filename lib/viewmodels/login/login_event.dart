@@ -29,9 +29,9 @@ class LoginSubmitted extends LoginEvent {
   const LoginSubmitted();
 }
 
-class LoginSuccessful extends LoginEvent {
+class LoginStatusChanged extends LoginEvent {
   final AuthenticationStatus status;
-  const LoginSuccessful(this.status);
+  const LoginStatusChanged(this.status);
 
   @override
   List<Object> get props => [status];

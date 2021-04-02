@@ -28,6 +28,8 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
       yield _mapPasswordChangedToState(event, state);
     } else if (event is LoginSubmitted) {
       yield* _mapLoginSubmittedToState(event, state);
+    } else if (event is LoginStatusChanged) {
+      yield* _mapAuthenticationStatusChangedToState(event);
     }
   }
 
@@ -68,6 +70,24 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
       } on Exception catch (_) {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }
+    }
+  }
+
+  Stream<LoginState> _mapAuthenticationStatusChangedToState(
+    LoginStatusChanged event,
+  ) async* {
+    switch (event.status) {
+      case AuthenticationStatus.unauthenticated:
+        yield const LoginState(
+            authenticationStatus: AuthenticationStatus.unauthenticated);
+        break;
+      case AuthenticationStatus.authenticated:
+        yield const LoginState(
+            authenticationStatus: AuthenticationStatus.authenticated);
+        break;
+      default:
+        yield const LoginState(
+            authenticationStatus: AuthenticationStatus.unauthenticated);
     }
   }
 }

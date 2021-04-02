@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:mvvm_bloc/models/user.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
-import 'package:user_repository/user_repository.dart';
+import 'package:mvvm_bloc/services/user_service.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
@@ -12,7 +13,7 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({
     required AuthenticationService authenticationRepository,
-    required UserRepository userRepository,
+    required UserService userRepository,
   })   : _authenticationRepository = authenticationRepository,
         _userRepository = userRepository,
         super(const AuthenticationState.unknown()) {
@@ -22,7 +23,7 @@ class AuthenticationBloc
   }
 
   final AuthenticationService _authenticationRepository;
-  final UserRepository _userRepository;
+  final UserService _userRepository;
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;
 

@@ -2,18 +2,19 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mvvm_bloc/authentication/authentication.dart';
+import 'package:mvvm_bloc/models/user.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
-import 'package:user_repository/user_repository.dart';
+import 'package:mvvm_bloc/services/user_service.dart';
 
 class MockAuthenticationRepository extends Mock
     implements AuthenticationService {}
 
-class MockUserRepository extends Mock implements UserRepository {}
+class MockUserRepository extends Mock implements UserService {}
 
 void main() {
   const user = User('id');
   late AuthenticationService authenticationRepository;
-  late UserRepository userRepository;
+  late UserService userRepository;
 
   setUp(() {
     authenticationRepository = MockAuthenticationRepository();

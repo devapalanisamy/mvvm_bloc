@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_bloc/authentication/bloc/authentication_bloc.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
+import 'package:mvvm_bloc/services/user_service.dart';
 import 'package:mvvm_bloc/views/home_view.dart';
 import 'package:mvvm_bloc/views/login_view.dart';
 import 'package:mvvm_bloc/views/splash_view.dart';
-import 'package:user_repository/user_repository.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -15,7 +15,7 @@ class App extends StatelessWidget {
   }) : super(key: key);
 
   final AuthenticationService authenticationRepository;
-  final UserRepository userRepository;
+  final UserService userRepository;
 
   @override
   Widget build(BuildContext context) {

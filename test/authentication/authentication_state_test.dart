@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mvvm_bloc/authentication/authentication.dart';
-import 'package:user_repository/user_repository.dart';
+import 'package:mvvm_bloc/models/user.dart';
 
 class MockUser extends Mock implements User {}
 

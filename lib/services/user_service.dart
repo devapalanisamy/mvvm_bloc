@@ -1,10 +1,9 @@
 import 'dart:async';
 
+import 'package:mvvm_bloc/models/user.dart';
 import 'package:uuid/uuid.dart';
 
-import 'models/models.dart';
-
-class UserRepository {
+class UserService {
   User? _user;
 
   Future<User?> getUser() async {

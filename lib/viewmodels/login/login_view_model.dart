@@ -13,10 +13,10 @@ part 'login_state.dart';
 class LoginViewModel extends Bloc<LoginEvent, LoginState> {
   LoginViewModel({
     required AuthenticationService authenticationService,
-  })   : _authenticationRepository = authenticationService,
+  })   : _authenticationService = authenticationService,
         super(const LoginState());
 
-  final AuthenticationService _authenticationRepository;
+  final AuthenticationService _authenticationService;
 
   @override
   Stream<LoginState> mapEventToState(
@@ -60,7 +60,7 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
       try {
-        await _authenticationRepository.logIn(
+        await _authenticationService.logIn(
           username: state.username.value,
           password: state.password.value,
         );

@@ -62,6 +62,7 @@ class _AppViewState extends State<AppView> {
         );
       },
       onGenerateRoute: Routes.generateRoute,
+      initialRoute: RoutePath.login,
     );
   }
 }

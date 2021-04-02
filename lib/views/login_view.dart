@@ -5,10 +5,6 @@ import 'package:mvvm_bloc/viewmodels/login/login_view_model.dart';
 import 'package:mvvm_bloc/views/widgets/login_form.dart';
 
 class LoginView extends StatelessWidget {
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => LoginView());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

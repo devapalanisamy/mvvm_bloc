@@ -3,10 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_bloc/viewmodels/home/home_view_model.dart';
 
 class HomeView extends StatelessWidget {
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => HomeView());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -8,11 +8,11 @@ import 'package:mvvm_bloc/models/username.dart';
 import 'package:mvvm_bloc/viewmodels/login/login_view_model.dart';
 
 class MockAuthenticationRepository extends Mock
-    implements AuthenticationRepository {}
+    implements AuthenticationService {}
 
 void main() {
   late LoginViewModel loginBloc;
-  late AuthenticationRepository authenticationRepository;
+  late AuthenticationService authenticationRepository;
 
   setUp(() {
     authenticationRepository = MockAuthenticationRepository();

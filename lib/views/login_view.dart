@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
           create: (context) {
             return LoginViewModel(
               authenticationRepository:
-                  RepositoryProvider.of<AuthenticationRepository>(context),
+                  RepositoryProvider.of<AuthenticationService>(context),
             );
           },
           child: LoginForm(),

@@ -6,13 +6,13 @@ import 'package:mvvm_bloc/authentication/authentication.dart';
 import 'package:user_repository/user_repository.dart';
 
 class MockAuthenticationRepository extends Mock
-    implements AuthenticationRepository {}
+    implements AuthenticationService {}
 
 class MockUserRepository extends Mock implements UserRepository {}
 
 void main() {
   const user = User('id');
-  late AuthenticationRepository authenticationRepository;
+  late AuthenticationService authenticationRepository;
   late UserRepository userRepository;
 
   setUp(() {

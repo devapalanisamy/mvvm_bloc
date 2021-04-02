@@ -7,11 +7,11 @@ import 'package:mvvm_bloc/views/login_view.dart';
 import 'package:mvvm_bloc/views/widgets/login_form.dart';
 
 class MockAuthenticationRepository extends Mock
-    implements AuthenticationRepository {}
+    implements AuthenticationService {}
 
 void main() {
   group('LoginPage', () {
-    late AuthenticationRepository authenticationRepository;
+    late AuthenticationService authenticationRepository;
 
     setUp(() {
       authenticationRepository = MockAuthenticationRepository();

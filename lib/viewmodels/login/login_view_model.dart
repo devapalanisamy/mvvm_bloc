@@ -12,11 +12,11 @@ part 'login_state.dart';
 
 class LoginViewModel extends Bloc<LoginEvent, LoginState> {
   LoginViewModel({
-    required AuthenticationRepository authenticationRepository,
+    required AuthenticationService authenticationRepository,
   })   : _authenticationRepository = authenticationRepository,
         super(const LoginState());
 
-  final AuthenticationRepository _authenticationRepository;
+  final AuthenticationService _authenticationRepository;
 
   @override
   Stream<LoginState> mapEventToState(

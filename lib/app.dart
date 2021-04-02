@@ -14,7 +14,7 @@ class App extends StatelessWidget {
     required this.userRepository,
   }) : super(key: key);
 
-  final AuthenticationRepository authenticationRepository;
+  final AuthenticationService authenticationRepository;
   final UserRepository userRepository;
 
   @override

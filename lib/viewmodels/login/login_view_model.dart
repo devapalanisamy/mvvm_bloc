@@ -12,8 +12,8 @@ part 'login_state.dart';
 
 class LoginViewModel extends Bloc<LoginEvent, LoginState> {
   LoginViewModel({
-    required AuthenticationService authenticationRepository,
-  })   : _authenticationRepository = authenticationRepository,
+    required AuthenticationService authenticationService,
+  })   : _authenticationRepository = authenticationService,
         super(const LoginState());
 
   final AuthenticationService _authenticationRepository;

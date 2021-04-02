@@ -18,7 +18,7 @@ class LoginView extends StatelessWidget {
         child: BlocProvider(
           create: (context) {
             return LoginViewModel(
-              authenticationRepository:
+              authenticationService:
                   RepositoryProvider.of<AuthenticationService>(context),
             );
           },

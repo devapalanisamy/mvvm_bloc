@@ -11,10 +11,10 @@ part 'home_view__state.dart';
 
 class HomeViewModel extends Bloc<HomeViewEvent, HomeViewState> {
   HomeViewModel({
-    required AuthenticationService authenticationRepository,
-    required UserService userRepository,
-  })   : _authenticationRepository = authenticationRepository,
-        _userRepository = userRepository,
+    required AuthenticationService authenticationService,
+    required UserService userService,
+  })   : _authenticationRepository = authenticationService,
+        _userRepository = userService,
         super(const HomeViewState.unknown()) {
     _authenticationStatusSubscription = _authenticationRepository.status.listen(
       (status) => add(AuthenticationStatusChanged(status)),

@@ -9,12 +9,13 @@ class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}
 
 void main() {
-  late LoginBloc loginBloc;
+  late LoginViewModel loginBloc;
   late AuthenticationRepository authenticationRepository;
 
   setUp(() {
     authenticationRepository = MockAuthenticationRepository();
-    loginBloc = LoginBloc(authenticationRepository: authenticationRepository);
+    loginBloc =
+        LoginViewModel(authenticationRepository: authenticationRepository);
   });
 
   group('LoginBloc', () {
@@ -23,7 +24,7 @@ void main() {
     });
 
     group('LoginSubmitted', () {
-      blocTest<LoginBloc, LoginState>(
+      blocTest<LoginViewModel, LoginState>(
         'emits [submissionInProgress, submissionSuccess] '
         'when login succeeds',
         build: () {
@@ -64,7 +65,7 @@ void main() {
         ],
       );
 
-      blocTest<LoginBloc, LoginState>(
+      blocTest<LoginViewModel, LoginState>(
         'emits [LoginInProgress, LoginFailure] when logIn fails',
         build: () {
           when(() => authenticationRepository.logIn(

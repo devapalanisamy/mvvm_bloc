@@ -10,8 +10,8 @@ import 'package:mvvm_bloc/models/username.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc({
+class LoginViewModel extends Bloc<LoginEvent, LoginState> {
+  LoginViewModel({
     required AuthenticationRepository authenticationRepository,
   })   : _authenticationRepository = authenticationRepository,
         super(const LoginState());

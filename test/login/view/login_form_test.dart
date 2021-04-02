@@ -5,17 +5,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mvvm_bloc/login/login.dart';
+import 'package:mvvm_bloc/views/widgets/login_form.dart';
 
 class FakeLoginEvent extends Fake implements LoginEvent {}
 
 class FakeLoginState extends Fake implements LoginState {}
 
 class MockLoginBloc extends MockBloc<LoginEvent, LoginState>
-    implements LoginBloc {}
+    implements LoginViewModel {}
 
 void main() {
   group('LoginForm', () {
-    late LoginBloc loginBloc;
+    late LoginViewModel loginBloc;
 
     setUpAll(() {
       registerFallbackValue<LoginEvent>(FakeLoginEvent());

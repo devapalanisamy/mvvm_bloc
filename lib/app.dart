@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mvvm_bloc/authentication/bloc/authentication_bloc.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
 import 'package:mvvm_bloc/services/user_service.dart';
+import 'package:mvvm_bloc/viewmodels/home/home_view_model.dart';
 import 'package:mvvm_bloc/views/home_view.dart';
 import 'package:mvvm_bloc/views/login_view.dart';
 import 'package:mvvm_bloc/views/splash_view.dart';
@@ -22,7 +22,7 @@ class App extends StatelessWidget {
     return RepositoryProvider.value(
       value: authenticationRepository,
       child: BlocProvider(
-        create: (_) => AuthenticationBloc(
+        create: (_) => HomeViewModel(
           authenticationRepository: authenticationRepository,
           userRepository: userRepository,
         ),
@@ -47,7 +47,7 @@ class _AppViewState extends State<AppView> {
     return MaterialApp(
       navigatorKey: _navigatorKey,
       builder: (context, child) {
-        return BlocListener<AuthenticationBloc, AuthenticationState>(
+        return BlocListener<HomeViewModel, HomeViewState>(
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:

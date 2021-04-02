@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mvvm_bloc/authentication/bloc/authentication_bloc.dart';
+import 'package:mvvm_bloc/viewmodels/home/home_view_model.dart';
 
 class HomeView extends StatelessWidget {
   static Route route() {
@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
             Builder(
               builder: (context) {
                 final userId = context.select(
-                  (AuthenticationBloc bloc) => bloc.state.user.id,
+                  (HomeViewModel bloc) => bloc.state.user.id,
                 );
                 return Text('UserID: $userId');
               },
@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
               child: const Text('Logout'),
               onPressed: () {
                 context
-                    .read<AuthenticationBloc>()
+                    .read<HomeViewModel>()
                     .add(AuthenticationLogoutRequested());
               },
             ),

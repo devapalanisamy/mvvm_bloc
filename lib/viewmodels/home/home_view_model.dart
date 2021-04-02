@@ -6,17 +6,16 @@ import 'package:mvvm_bloc/models/user.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
 import 'package:mvvm_bloc/services/user_service.dart';
 
-part 'authentication_event.dart';
-part 'authentication_state.dart';
+part 'home_view_event.dart';
+part 'home_view__state.dart';
 
-class AuthenticationBloc
-    extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc({
+class HomeViewModel extends Bloc<HomeViewEvent, HomeViewState> {
+  HomeViewModel({
     required AuthenticationService authenticationRepository,
     required UserService userRepository,
   })   : _authenticationRepository = authenticationRepository,
         _userRepository = userRepository,
-        super(const AuthenticationState.unknown()) {
+        super(const HomeViewState.unknown()) {
     _authenticationStatusSubscription = _authenticationRepository.status.listen(
       (status) => add(AuthenticationStatusChanged(status)),
     );
@@ -28,8 +27,8 @@ class AuthenticationBloc
       _authenticationStatusSubscription;
 
   @override
-  Stream<AuthenticationState> mapEventToState(
-    AuthenticationEvent event,
+  Stream<HomeViewState> mapEventToState(
+    HomeViewEvent event,
   ) async* {
     if (event is AuthenticationStatusChanged) {
       yield await _mapAuthenticationStatusChangedToState(event);
@@ -45,19 +44,19 @@ class AuthenticationBloc
     return super.close();
   }
 
-  Future<AuthenticationState> _mapAuthenticationStatusChangedToState(
+  Future<HomeViewState> _mapAuthenticationStatusChangedToState(
     AuthenticationStatusChanged event,
   ) async {
     switch (event.status) {
       case AuthenticationStatus.unauthenticated:
-        return const AuthenticationState.unauthenticated();
+        return const HomeViewState.unauthenticated();
       case AuthenticationStatus.authenticated:
         final user = await _tryGetUser();
         return user != null
-            ? AuthenticationState.authenticated(user)
-            : const AuthenticationState.unauthenticated();
+            ? HomeViewState.authenticated(user)
+            : const HomeViewState.unauthenticated();
       default:
-        return const AuthenticationState.unknown();
+        return const HomeViewState.unknown();
     }
   }
 

@@ -1,7 +1,7 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_bloc/authentication/bloc/authentication_bloc.dart';
+import 'package:mvvm_bloc/services/authentication_service.dart';
 import 'package:mvvm_bloc/views/home_view.dart';
 import 'package:mvvm_bloc/views/login_view.dart';
 import 'package:mvvm_bloc/views/splash_view.dart';

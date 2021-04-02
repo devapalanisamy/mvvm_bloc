@@ -1,10 +1,10 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mvvm_bloc/models/password.dart';
 import 'package:mvvm_bloc/models/username.dart';
+import 'package:mvvm_bloc/services/authentication_service.dart';
 import 'package:mvvm_bloc/viewmodels/login/login_view_model.dart';
 
 class MockAuthenticationRepository extends Mock

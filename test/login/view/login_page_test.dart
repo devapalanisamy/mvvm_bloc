@@ -17,7 +17,7 @@ void main() {
     });
 
     test('is routable', () {
-      expect(LoginPage.route(), isA<MaterialPageRoute>());
+      expect(LoginView.route(), isA<MaterialPageRoute>());
     });
 
     testWidgets('renders a LoginForm', (tester) async {
@@ -25,7 +25,7 @@ void main() {
         RepositoryProvider.value(
           value: authenticationRepository,
           child: MaterialApp(
-            home: Scaffold(body: LoginPage()),
+            home: Scaffold(body: LoginView()),
           ),
         ),
       );

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_bloc/authentication/bloc/authentication_bloc.dart';
 
-class HomePage extends StatelessWidget {
+class HomeView extends StatelessWidget {
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => HomePage());
+    return MaterialPageRoute<void>(builder: (_) => HomeView());
   }
 
   @override

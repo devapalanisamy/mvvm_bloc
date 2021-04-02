@@ -2,9 +2,9 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_bloc/authentication/bloc/authentication_bloc.dart';
-import 'package:mvvm_bloc/home/view/home_page.dart';
-import 'package:mvvm_bloc/login/view/login_page.dart';
-import 'package:mvvm_bloc/splash/view/splash_page.dart';
+import 'package:mvvm_bloc/views/home_view.dart';
+import 'package:mvvm_bloc/views/login_view.dart';
+import 'package:mvvm_bloc/views/splash_view.dart';
 import 'package:user_repository/user_repository.dart';
 
 class App extends StatelessWidget {
@@ -52,13 +52,13 @@ class _AppViewState extends State<AppView> {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
                 _navigator.pushAndRemoveUntil<void>(
-                  HomePage.route(),
+                  HomeView.route(),
                   (route) => false,
                 );
                 break;
               case AuthenticationStatus.unauthenticated:
                 _navigator.pushAndRemoveUntil<void>(
-                  LoginPage.route(),
+                  LoginView.route(),
                   (route) => false,
                 );
                 break;

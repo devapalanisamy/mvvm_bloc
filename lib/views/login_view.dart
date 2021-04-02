@@ -2,11 +2,11 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_bloc/login/bloc/login_bloc.dart';
-import 'package:mvvm_bloc/login/view/login_form.dart';
+import 'package:mvvm_bloc/views/widgets/login_form.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginView extends StatelessWidget {
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => LoginPage());
+    return MaterialPageRoute<void>(builder: (_) => LoginView());
   }
 
   @override

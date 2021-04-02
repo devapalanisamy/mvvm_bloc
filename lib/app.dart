@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mvvm_bloc/container.dart';
+import 'package:mvvm_bloc/router/route_path.dart';
+import 'package:mvvm_bloc/router/routes.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
+import 'package:mvvm_bloc/services/navigation_service.dart';
 import 'package:mvvm_bloc/services/user_service.dart';
 import 'package:mvvm_bloc/viewmodels/home/home_view_model.dart';
-import 'package:mvvm_bloc/views/home_view.dart';
-import 'package:mvvm_bloc/views/login_view.dart';
-import 'package:mvvm_bloc/views/splash_view.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -38,29 +39,20 @@ class AppView extends StatefulWidget {
 }
 
 class _AppViewState extends State<AppView> {
-  final _navigatorKey = GlobalKey<NavigatorState>();
-
-  NavigatorState get _navigator => _navigatorKey.currentState!;
-
   @override
   Widget build(BuildContext context) {
+    final navigationService = container<NavigationService>();
     return MaterialApp(
-      navigatorKey: _navigatorKey,
+      navigatorKey: navigationService.navigatorKey,
       builder: (context, child) {
         return BlocListener<HomeViewModel, HomeViewState>(
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-                _navigator.pushAndRemoveUntil<void>(
-                  HomeView.route(),
-                  (route) => false,
-                );
+                navigationService.pushNamedAndRemoveUntil(RoutePath.home);
                 break;
               case AuthenticationStatus.unauthenticated:
-                _navigator.pushAndRemoveUntil<void>(
-                  LoginView.route(),
-                  (route) => false,
-                );
+                navigationService.pushNamedAndRemoveUntil(RoutePath.login);
                 break;
               default:
                 break;
@@ -69,7 +61,7 @@ class _AppViewState extends State<AppView> {
           child: child,
         );
       },
-      onGenerateRoute: (_) => SplashPage.route(),
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }

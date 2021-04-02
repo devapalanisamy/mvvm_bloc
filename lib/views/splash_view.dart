@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashView extends StatelessWidget {
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => SplashPage());
+    return MaterialPageRoute<void>(builder: (_) => SplashView());
   }
 
   @override

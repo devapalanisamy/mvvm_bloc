@@ -13,15 +13,15 @@ class HomeViewModel extends Bloc<HomeViewEvent, HomeViewState> {
   HomeViewModel({
     required AuthenticationService authenticationService,
     required UserService userService,
-  })   : _authenticationRepository = authenticationService,
+  })   : _authenticationService = authenticationService,
         _userRepository = userService,
         super(const HomeViewState.unknown()) {
-    _authenticationStatusSubscription = _authenticationRepository.status.listen(
+    _authenticationStatusSubscription = _authenticationService.status.listen(
       (status) => add(AuthenticationStatusChanged(status)),
     );
   }
 
-  final AuthenticationService _authenticationRepository;
+  final AuthenticationService _authenticationService;
   final UserService _userRepository;
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;
@@ -33,14 +33,14 @@ class HomeViewModel extends Bloc<HomeViewEvent, HomeViewState> {
     if (event is AuthenticationStatusChanged) {
       yield await _mapAuthenticationStatusChangedToState(event);
     } else if (event is AuthenticationLogoutRequested) {
-      _authenticationRepository.logOut();
+      _authenticationService.logOut();
     }
   }
 
   @override
   Future<void> close() {
     _authenticationStatusSubscription.cancel();
-    _authenticationRepository.dispose();
+    _authenticationService.dispose();
     return super.close();
   }
 

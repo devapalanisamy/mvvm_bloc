@@ -1,13 +1,15 @@
 import 'dart:async';
 
+import 'package:rxdart/rxdart.dart';
+
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 class AuthenticationService {
-  final _controller = StreamController<AuthenticationStatus>();
+  final _controller = new BehaviorSubject<AuthenticationStatus>();
 
   Stream<AuthenticationStatus> get status async* {
     await Future<void>.delayed(const Duration(seconds: 1));
-    yield AuthenticationStatus.unauthenticated;
+    // yield AuthenticationStatus.unauthenticated;
     yield* _controller.stream;
   }
 

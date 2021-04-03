@@ -45,21 +45,22 @@ class _AppViewState extends State<AppView> {
     return MaterialApp(
       navigatorKey: navigationService.navigatorKey,
       builder: (context, child) {
-        return BlocListener<HomeViewModel, HomeViewState>(
-          listener: (context, state) {
-            switch (state.status) {
-              case AuthenticationStatus.authenticated:
-                navigationService.pushNamedAndRemoveUntil(RoutePath.home);
-                break;
-              case AuthenticationStatus.unauthenticated:
-                navigationService.pushNamedAndRemoveUntil(RoutePath.login);
-                break;
-              default:
-                break;
-            }
-          },
-          child: child,
-        );
+        // return BlocListener<HomeViewModel, HomeViewState>(
+        //   listener: (context, state) {
+        //     switch (state.status) {
+        //       case AuthenticationStatus.authenticated:
+        //         navigationService.pushNamedAndRemoveUntil(RoutePath.home);
+        //         break;
+        //       case AuthenticationStatus.unauthenticated:
+        //         navigationService.pushNamedAndRemoveUntil(RoutePath.login);
+        //         break;
+        //       default:
+        //         break;
+        //     }
+        //   },
+        //   child: child,
+        // );
+        return child!;
       },
       onGenerateRoute: Routes.generateRoute,
       initialRoute: RoutePath.login,

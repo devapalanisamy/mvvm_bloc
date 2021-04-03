@@ -14,10 +14,14 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
   LoginViewModel({
     required AuthenticationService authenticationService,
   })   : _authenticationService = authenticationService,
-        super(const LoginState());
+        super(const LoginState()) {
+    _authenticationStatusSubscription = _authenticationService.status
+        .listen((status) => add(LoginStatusChanged(status)));
+  }
 
   final AuthenticationService _authenticationService;
-
+  late StreamSubscription<AuthenticationStatus>
+      _authenticationStatusSubscription;
   @override
   Stream<LoginState> mapEventToState(
     LoginEvent event,
@@ -66,7 +70,9 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
           username: state.username.value,
           password: state.password.value,
         );
-        yield state.copyWith(status: FormzStatus.submissionSuccess);
+        yield state.copyWith(
+          status: FormzStatus.submissionSuccess,
+        );
       } on Exception catch (_) {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }
@@ -89,5 +95,12 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
         yield const LoginState(
             authenticationStatus: AuthenticationStatus.unauthenticated);
     }
+  }
+
+  @override
+  Future<void> close() {
+    _authenticationStatusSubscription.cancel();
+    // _authenticationService.dispose();
+    return super.close();
   }
 }

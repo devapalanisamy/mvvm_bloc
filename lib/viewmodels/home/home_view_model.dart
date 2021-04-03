@@ -40,7 +40,7 @@ class HomeViewModel extends Bloc<HomeViewEvent, HomeViewState> {
   @override
   Future<void> close() {
     _authenticationStatusSubscription.cancel();
-    _authenticationService.dispose();
+    //_authenticationService.dispose();
     return super.close();
   }
 

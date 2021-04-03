@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mvvm_bloc/container.dart';
-import 'package:mvvm_bloc/router/route_path.dart';
-import 'package:mvvm_bloc/services/authentication_service.dart';
-import 'package:mvvm_bloc/services/navigation_service.dart';
 import 'package:mvvm_bloc/viewmodels/login/login_view_model.dart';
 
 class LoginForm extends StatelessWidget {
@@ -19,18 +15,6 @@ class LoginForm extends StatelessWidget {
               const SnackBar(content: Text('Authentication Failure')),
             );
           return;
-        }
-        switch (state.authenticationStatus) {
-          case AuthenticationStatus.authenticated:
-            container<NavigationService>()
-                .pushNamedAndRemoveUntil(RoutePath.home);
-            break;
-          // case AuthenticationStatus.unauthenticated:
-          //   container<NavigationService>()
-          //       .pushNamedAndRemoveUntil(RoutePath.login);
-          //   break;
-          default:
-            break;
         }
       },
       child: Align(

@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mvvm_bloc/models/user.dart';
+import 'package:mvvm_bloc/router/route_path.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
+import 'package:mvvm_bloc/services/navigation_service.dart';
 import 'package:mvvm_bloc/services/user_service.dart';
 
 part 'home_view_event.dart';
@@ -11,18 +13,32 @@ part 'home_view__state.dart';
 
 class HomeViewModel extends Bloc<HomeViewEvent, HomeViewState> {
   HomeViewModel({
+    required NavigationService navigationService,
     required AuthenticationService authenticationService,
     required UserService userService,
   })   : _authenticationService = authenticationService,
         _userRepository = userService,
+        _navigationService = navigationService,
         super(const HomeViewState.unknown()) {
     _authenticationStatusSubscription = _authenticationService.status.listen(
-      (status) => add(AuthenticationStatusChanged(status)),
+      authenticationStatusChangedHandler,
     );
+  }
+
+  void authenticationStatusChangedHandler(status) async {
+    add(AuthenticationStatusChanged(status));
+    switch (status) {
+      case AuthenticationStatus.unauthenticated:
+        await showLogin();
+        break;
+      default:
+        return;
+    }
   }
 
   final AuthenticationService _authenticationService;
   final UserService _userRepository;
+  final NavigationService _navigationService;
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;
 
@@ -67,5 +83,9 @@ class HomeViewModel extends Bloc<HomeViewEvent, HomeViewState> {
     } on Exception {
       return null;
     }
+  }
+
+  Future<void> showLogin() async {
+    await _navigationService.pushNamedAndRemoveUntil(RoutePath.login);
   }
 }

@@ -5,21 +5,35 @@ import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:mvvm_bloc/models/password.dart';
 import 'package:mvvm_bloc/models/username.dart';
+import 'package:mvvm_bloc/router/route_path.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
+import 'package:mvvm_bloc/services/navigation_service.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginViewModel extends Bloc<LoginEvent, LoginState> {
-  LoginViewModel({
-    required AuthenticationService authenticationService,
-  })   : _authenticationService = authenticationService,
+  LoginViewModel(
+      {required AuthenticationService authenticationService,
+      required NavigationService navigationService})
+      : _authenticationService = authenticationService,
+        _navigationService = navigationService,
         super(const LoginState()) {
-    _authenticationStatusSubscription = _authenticationService.status
-        .listen((status) => add(LoginStatusChanged(status)));
+    _authenticationStatusSubscription =
+        _authenticationService.status.listen((status) async {
+      add(LoginStatusChanged(status));
+      switch (status) {
+        case AuthenticationStatus.authenticated:
+          await showHome();
+          break;
+        default:
+          return;
+      }
+    });
   }
 
   final AuthenticationService _authenticationService;
+  final NavigationService _navigationService;
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;
   @override
@@ -102,5 +116,9 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
     _authenticationStatusSubscription.cancel();
     // _authenticationService.dispose();
     return super.close();
+  }
+
+  Future<void> showHome() async {
+    await _navigationService.pushNamedAndRemoveUntil(RoutePath.home);
   }
 }

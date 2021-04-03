@@ -26,6 +26,7 @@ class App extends StatelessWidget {
         create: (_) => HomeViewModel(
           authenticationService: authenticationService,
           userService: userRepository,
+          navigationService: container<NavigationService>(),
         ),
         child: AppView(),
       ),

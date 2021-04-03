@@ -16,9 +16,11 @@ registerViewModels() {
   container.registerFactory(() => HomeViewModel(
         authenticationService: container<AuthenticationService>(),
         userService: container<UserService>(),
+        navigationService: container<NavigationService>(),
       ));
   container.registerFactory(() => LoginViewModel(
         authenticationService: container<AuthenticationService>(),
+        navigationService: container<NavigationService>(),
       ));
 }
 

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:mvvm_bloc/models/user.dart';
+import 'package:mvvm_bloc/mvvm/models/models.dart';
 import 'package:uuid/uuid.dart';
 
 class UserService {

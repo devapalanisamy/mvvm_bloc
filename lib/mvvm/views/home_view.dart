@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_bloc/container.dart';
-import 'package:mvvm_bloc/viewmodels/home/home_view_model.dart';
+import 'package:mvvm_bloc/mvvm/viewmodels/home/home_view_model.dart';
 
 class HomeView extends StatelessWidget {
   @override

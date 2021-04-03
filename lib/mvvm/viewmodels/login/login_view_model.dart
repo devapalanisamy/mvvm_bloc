@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:mvvm_bloc/models/password.dart';
-import 'package:mvvm_bloc/models/username.dart';
+import 'package:mvvm_bloc/mvvm/models/models.dart';
 import 'package:mvvm_bloc/router/route_path.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
 import 'package:mvvm_bloc/services/navigation_service.dart';
@@ -114,7 +113,6 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
   @override
   Future<void> close() {
     _authenticationStatusSubscription.cancel();
-    // _authenticationService.dispose();
     return super.close();
   }
 

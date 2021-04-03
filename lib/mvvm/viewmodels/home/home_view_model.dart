@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:mvvm_bloc/models/user.dart';
+import 'package:mvvm_bloc/mvvm/models/models.dart';
 import 'package:mvvm_bloc/router/route_path.dart';
 import 'package:mvvm_bloc/services/authentication_service.dart';
 import 'package:mvvm_bloc/services/navigation_service.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_bloc/mvvm/views/home_view.dart';
+import 'package:mvvm_bloc/mvvm/views/login_view.dart';
+import 'package:mvvm_bloc/mvvm/views/splash_view.dart';
 import 'package:mvvm_bloc/router/route_path.dart';
-import 'package:mvvm_bloc/views/home_view.dart';
-import 'package:mvvm_bloc/views/login_view.dart';
-import 'package:mvvm_bloc/views/splash_view.dart';
 
 class Routes {
   static Route<T> generateRoute<T>(RouteSettings settings) {

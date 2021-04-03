@@ -10,29 +10,31 @@ class HomeView extends StatelessWidget {
       create: (BuildContext context) {
         return container<HomeViewModel>();
       },
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Home')),
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Builder(
-                builder: (context) {
-                  final userId = context.select(
-                    (HomeViewModel bloc) => bloc.state.user.id,
-                  );
-                  return Text('UserID: $userId');
-                },
-              ),
-              ElevatedButton(
-                child: const Text('Logout'),
-                onPressed: () {
-                  context
-                      .read<HomeViewModel>()
-                      .add(AuthenticationLogoutRequested());
-                },
-              ),
-            ],
+      child: BlocBuilder<HomeViewModel, HomeViewState>(
+        builder: (context, state) => Scaffold(
+          appBar: AppBar(title: const Text('Home')),
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Builder(
+                  builder: (context) {
+                    final userId = context.select(
+                      (HomeViewModel bloc) => bloc.state.user.id,
+                    );
+                    return Text('UserID: $userId');
+                  },
+                ),
+                ElevatedButton(
+                  child: const Text('Logout'),
+                  onPressed: () {
+                    context
+                        .read<HomeViewModel>()
+                        .add(AuthenticationLogoutRequested());
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
